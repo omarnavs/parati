@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>pagina8</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:'Montserrat', sans-serif;
+}
+
+/* canvas */
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+/* contenido */
+
+.contenido{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    width:80%;
+    max-width:800px;
+}
+
+/* frase */
+
+.frase{
+    font-family:'Playfair Display', serif;
+    font-size:40px;
+    line-height:1.6;
+}
+
+/* boton */
+
+.boton{
+    margin-top:40px;
+}
+
+button{
+    background:#792200;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#792200;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="noche"></canvas>
+
+<div class="contenido">
+
+<div class="frase">
+Dejé de voltear a ver la Luna<br>
+Cuando me di cuenta que<br>
+El mismo brillo lo tienen tus ojos, mi amor<br><br>
+-Calle 24
+</div>
+
+<div class="boton">
+<button onclick="location.href='pagina9.html'">
+Siguiente pagina
+</button>
+</div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("noche");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+/* estrellas */
+
+let estrellas = [];
+
+for(let i=0;i<120;i++){
+estrellas.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+alpha:Math.random()
+});
+}
+
+/* nubes */
+
+let nubes = [];
+
+for(let i=0;i<6;i++){
+nubes.push({
+x:Math.random()*canvas.width,
+y:Math.random()*200,
+speed:0.2 + Math.random()*0.3
+});
+}
+
+function dibujarEstrellas(){
+
+estrellas.forEach(e=>{
+
+ctx.fillStyle="rgba(255,255,255,"+e.alpha+")";
+
+ctx.beginPath();
+ctx.arc(e.x,e.y,e.size,0,Math.PI*2);
+ctx.fill();
+
+e.alpha += (Math.random()-0.5)*0.05;
+
+if(e.alpha < 0.2) e.alpha = 0.2;
+if(e.alpha > 1) e.alpha = 1;
+
+});
+
+}
+
+function dibujarNube(x,y){
+
+ctx.fillStyle="rgba(255,255,255,0.1)";
+
+ctx.beginPath();
+ctx.arc(x,y,30,0,Math.PI*2);
+ctx.arc(x+40,y+5,30,0,Math.PI*2);
+ctx.arc(x+80,y,30,0,Math.PI*2);
+ctx.fill();
+
+}
+
+function animar(){
+
+let grad = ctx.createLinearGradient(0,0,0,canvas.height);
+
+grad.addColorStop(0,"#020024");
+grad.addColorStop(0.6,"#090979");
+grad.addColorStop(1,"#000000");
+
+ctx.fillStyle = grad;
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+/* luna */
+
+ctx.fillStyle="#f5f3ce";
+
+ctx.shadowColor="#ffffcc";
+ctx.shadowBlur=40;
+
+ctx.beginPath();
+ctx.arc(canvas.width*0.8,120,70,0,Math.PI*2);
+ctx.fill();
+
+ctx.shadowBlur=0;
+
+/* estrellas */
+
+dibujarEstrellas();
+
+/* nubes */
+
+nubes.forEach(n=>{
+
+dibujarNube(n.x,n.y);
+
+n.x += n.speed;
+
+if(n.x > canvas.width+100){
+n.x = -100;
+}
+
+});
+
+requestAnimationFrame(animar);
+
+}
+
+animar();
+
+</script>
+
+</body>
+</html>

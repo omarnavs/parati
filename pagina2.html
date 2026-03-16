@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>pagina2</title>
+
+<!-- tipografia bonita -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(180deg,#e79a96,#e3b0a8);
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* imagen de recuerdos */
+
+.galeria{
+    margin-top:40px;
+}
+
+.galeria img{
+    width:90%;
+    max-width:1100px;
+}
+
+/* titulo */
+
+.titulo{
+    margin-top:20px;
+    font-family:'Dancing Script',cursive;
+    font-size:32px;
+}
+
+/* texto */
+
+.texto{
+    width:80%;
+    max-width:900px;
+    margin:20px auto;
+    font-size:20px;
+    line-height:1.7;
+}
+
+/* boton */
+
+.boton{
+    margin-top:30px;
+}
+
+.boton button{
+    background:#792200;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.boton button:hover{
+    background:#792200;
+}
+
+/* corazones flotando */
+
+.corazon{
+    position:fixed;
+    bottom:-50px;
+    font-size:30px;
+    animation:subir 6s linear infinite;
+}
+
+@keyframes subir{
+    0%{
+        transform:translateY(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* posiciones */
+
+.c1{left:10%; animation-duration:7s;}
+.c2{left:30%; animation-duration:6s;}
+.c3{left:50%; animation-duration:8s;}
+.c4{left:70%; animation-duration:5s;}
+.c5{left:90%; animation-duration:7s;}
+
+</style>
+</head>
+
+<body>
+
+<!-- imagen de recuerdos -->
+<div class="galeria">
+<img src="imgs/Imagen2.png">
+</div>
+
+<br>
+
+<div class="titulo">
+TE AMO A TI Y SOLO A TI MI VIDA
+</div>
+<br>
+
+<div class="texto">
+Cada una de estas fotos no son solo momentos, son pedazos de mi vida contigo,
+mi amor no es perfecto, pero sí verdadero, nos equivocamos, pero nada de eso
+cambia lo que siento, porque entre todas las personas que existen, mi corazón
+te eligió a ti y no para un momento, te eligió para caminar juntos, aprender
+juntos y seguir escribiendo nuestra historia, porque al final del día, eres la
+única persona con la que quiero estar.
+</div>
+
+<div class="boton">
+<button onclick="location.href='pagina3.html'">
+Siguiente pagina
+</button>
+</div>
+
+<!-- corazones animados -->
+
+<div class="corazon c1">❤️</div>
+<div class="corazon c2">❤️</div>
+<div class="corazon c3">❤️</div>
+<div class="corazon c4">❤️</div>
+<div class="corazon c5">❤️</div>
+
+</body>
+</html>

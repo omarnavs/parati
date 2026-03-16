@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>pagina6</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:#fff0f5;
+    font-family:'Montserrat', sans-serif;
+}
+
+/* canvas flores */
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+/* contenido */
+
+.contenido{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:#5a2a2a;
+    width:80%;
+    max-width:850px;
+}
+
+/* frase */
+
+.frase{
+    font-family:'Playfair Display', serif;
+    font-size:40px;
+    line-height:1.5;
+}
+
+/* boton */
+
+.boton{
+    margin-top:40px;
+}
+
+button{
+    background:#792200;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#792200;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="flores"></canvas>
+
+<div class="contenido">
+
+<div class="frase">
+Ni las gerberas más hermosas pueden compararse contigo, porque tu hermosura no solo se ve, también se siente en la paz, la ternura y el amor que traes a mi vida
+</div>
+
+<div class="boton">
+<button onclick="location.href='pagina7.html'">
+Siguiente pagina
+</button>
+</div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("flores");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let flores = [];
+
+for(let i=0;i<40;i++){
+
+flores.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*20+20,
+speed:Math.random()*0.5+0.2
+});
+
+}
+
+function dibujarFlor(x,y,size){
+
+for(let i=0;i<12;i++){
+
+let angulo = i*(Math.PI*2/12);
+
+let px = x + Math.cos(angulo)*size;
+let py = y + Math.sin(angulo)*size;
+
+ctx.fillStyle="#ff4d6d";
+
+ctx.beginPath();
+ctx.arc(px,py,size/3,0,Math.PI*2);
+ctx.fill();
+
+}
+
+ctx.fillStyle="#ffd166";
+
+ctx.beginPath();
+ctx.arc(x,y,size/2.5,0,Math.PI*2);
+ctx.fill();
+
+}
+
+function animar(){
+
+ctx.fillStyle="#fff0f5";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+flores.forEach(f=>{
+
+dibujarFlor(f.x,f.y,f.size);
+
+f.y += f.speed;
+
+if(f.y > canvas.height+50){
+f.y = -50;
+f.x = Math.random()*canvas.width;
+}
+
+});
+
+requestAnimationFrame(animar);
+
+}
+
+animar();
+
+</script>
+
+</body>
+</html>

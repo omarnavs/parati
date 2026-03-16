@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>pagina7</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:'Montserrat', sans-serif;
+}
+
+/* canvas paisaje */
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+/* contenido */
+
+.contenido{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    width:80%;
+    max-width:800px;
+}
+
+/* texto */
+
+.frase{
+    font-family:'Playfair Display', serif;
+    font-size:40px;
+    line-height:1.6;
+}
+
+/* boton */
+
+.boton{
+    margin-top:40px;
+}
+
+button{
+    background:#792200;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#792200;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="paisaje"></canvas>
+
+<div class="contenido">
+
+<div class="frase">
+Quisiera estar contigo 24:7<br>
+Porque no puedo ir un día sin verte<br>
+Es que tu presencia es algo que necesito<br>
+Es tan esencial como el aire que respiro<br><br>
+-Danny sin luz
+</div>
+
+<div class="boton">
+<button onclick="location.href='pagina8.html'">
+Siguiente pagina
+</button>
+</div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("paisaje");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let solX = canvas.width/2;
+let solY = canvas.height/3;
+
+let nubes = [];
+
+for(let i=0;i<8;i++){
+nubes.push({
+x:Math.random()*canvas.width,
+y:Math.random()*200,
+speed:0.2 + Math.random()*0.3
+});
+}
+
+function dibujarMontañas(){
+
+ctx.fillStyle="#4a2c2a";
+
+ctx.beginPath();
+ctx.moveTo(0,canvas.height);
+ctx.lineTo(200,400);
+ctx.lineTo(400,canvas.height);
+ctx.fill();
+
+ctx.beginPath();
+ctx.moveTo(300,canvas.height);
+ctx.lineTo(600,350);
+ctx.lineTo(900,canvas.height);
+ctx.fill();
+
+ctx.beginPath();
+ctx.moveTo(800,canvas.height);
+ctx.lineTo(1100,420);
+ctx.lineTo(canvas.width,canvas.height);
+ctx.fill();
+
+}
+
+function dibujarNube(x,y){
+
+ctx.fillStyle="rgba(255,255,255,0.6)";
+
+ctx.beginPath();
+ctx.arc(x,y,25,0,Math.PI*2);
+ctx.arc(x+30,y+5,25,0,Math.PI*2);
+ctx.arc(x+60,y,25,0,Math.PI*2);
+ctx.fill();
+
+}
+
+function animar(){
+
+let grad = ctx.createLinearGradient(0,0,0,canvas.height);
+
+grad.addColorStop(0,"#ff7e2d");
+grad.addColorStop(0.5,"#ff9a3c");
+grad.addColorStop(1,"#ffd6a5");
+
+ctx.fillStyle = grad;
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#ffcc66";
+ctx.beginPath();
+ctx.arc(solX,solY,60,0,Math.PI*2);
+ctx.fill();
+
+nubes.forEach(n=>{
+
+dibujarNube(n.x,n.y);
+
+n.x += n.speed;
+
+if(n.x > canvas.width+80){
+n.x = -80;
+}
+
+});
+
+dibujarMontañas();
+
+requestAnimationFrame(animar);
+
+}
+
+animar();
+
+</script>
+
+</body>
+</html>

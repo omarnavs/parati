@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>pagina4</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:black;
+    font-family:'Montserrat', sans-serif;
+}
+
+/* fondo galaxia */
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+/* contenido central */
+
+.contenido{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    width:80%;
+    max-width:900px;
+}
+
+/* imagen */
+
+.imagen img{
+    width:200px;
+    margin-bottom:25px;
+}
+
+/* frase */
+
+.frase{
+    font-family:'Playfair Display', serif;
+    font-size:42px;
+    line-height:1.5;
+}
+
+/* boton */
+
+.boton{
+    margin-top:40px;
+}
+
+button{
+    background:#792200;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#792200;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<canvas id="galaxia"></canvas>
+
+<div class="contenido">
+
+<div class="imagen">
+<img src="imgs/imagen3.jpeg">
+</div>
+
+<div class="frase">
+Te amo de aqui a la galaxia mas lejana y escondida, donde ni los marcianos han llegado, 1000000000 vueltas a pasitos de tortuga
+</div>
+
+<div class="boton">
+<button onclick="location.href='pagina5.html'">
+Siguiente pagina
+</button>
+</div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("galaxia");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let estrellas = [];
+
+for(let i=0;i<400;i++){
+
+estrellas.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+speed:Math.random()*0.5
+});
+
+}
+
+function animar(){
+
+ctx.fillStyle="black";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+
+estrellas.forEach(e=>{
+
+ctx.beginPath();
+ctx.arc(e.x,e.y,e.size,0,Math.PI*2);
+ctx.fill();
+
+e.y += e.speed;
+
+if(e.y > canvas.height){
+e.y = 0;
+e.x = Math.random()*canvas.width;
+}
+
+});
+
+requestAnimationFrame(animar);
+
+}
+
+animar();
+
+</script>
+
+</body>
+</html>

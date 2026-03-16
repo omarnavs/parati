@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>pagina9</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:'Montserrat', sans-serif;
+}
+
+/* canvas */
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+/* contenido */
+
+.contenido{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    width:80%;
+    max-width:800px;
+}
+
+/* texto */
+
+.frase{
+    font-family:'Playfair Display', serif;
+    font-size:38px;
+    line-height:1.6;
+}
+
+/* boton */
+
+.boton{
+    margin-top:40px;
+}
+
+button{
+    background:#792200;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#792200;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="amor"></canvas>
+
+<div class="contenido">
+
+<div class="frase">
+Después de un largo tiempo encontre mi amor<br>
+Y la distancia no importo, y floreció<br>
+Y en mi alma siempre supe que eras<br>
+Tu mi gran amor<br>
+Mi compañera<br>
+Mi adoración<br><br>
+
+-Leon Larregui
+</div>
+
+<div class="boton">
+<button onclick="location.href='pagina10.html'">
+Siguiente pagina
+</button>
+</div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("amor");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+/* corazones */
+
+let corazones = [];
+
+for(let i=0;i<40;i++){
+
+corazones.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*20+10,
+speed:Math.random()*0.5+0.3
+});
+
+}
+
+/* particulas */
+
+let estrellas = [];
+
+for(let i=0;i<120;i++){
+
+estrellas.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2,
+alpha:Math.random()
+});
+
+}
+
+function dibujarCorazon(x,y,size){
+
+ctx.fillStyle="#ff4d6d";
+
+ctx.beginPath();
+
+ctx.moveTo(x,y);
+
+ctx.bezierCurveTo(
+x - size/2, y - size/2,
+x - size, y + size/3,
+x, y + size
+);
+
+ctx.bezierCurveTo(
+x + size, y + size/3,
+x + size/2, y - size/2,
+x, y
+);
+
+ctx.fill();
+
+}
+
+function dibujarEstrellas(){
+
+estrellas.forEach(e=>{
+
+ctx.fillStyle="rgba(255,255,255,"+e.alpha+")";
+
+ctx.beginPath();
+ctx.arc(e.x,e.y,e.size,0,Math.PI*2);
+ctx.fill();
+
+e.alpha += (Math.random()-0.5)*0.05;
+
+if(e.alpha<0.2) e.alpha=0.2;
+if(e.alpha>1) e.alpha=1;
+
+});
+
+}
+
+function animar(){
+
+let grad = ctx.createLinearGradient(0,0,0,canvas.height);
+
+grad.addColorStop(0,"#ff758f");
+grad.addColorStop(0.5,"#ff7eb3");
+grad.addColorStop(1,"#ffd6e0");
+
+ctx.fillStyle=grad;
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+dibujarEstrellas();
+
+corazones.forEach(c=>{
+
+dibujarCorazon(c.x,c.y,c.size);
+
+c.y -= c.speed;
+
+if(c.y < -50){
+c.y = canvas.height + 50;
+c.x = Math.random()*canvas.width;
+}
+
+});
+
+requestAnimationFrame(animar);
+
+}
+
+animar();
+
+</script>
+
+</body>
+</html>
