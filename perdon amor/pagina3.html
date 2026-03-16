@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>pagina3</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    background:white;
+    font-family:'Poppins',sans-serif;
+    text-align:center;
+}
+
+/* gif superior */
+
+.gif img{
+    width:200px;
+    margin-top:40px;
+}
+
+/* SOBRE */
+
+.contenedor-sobre{
+    margin-top:30px;
+    perspective:1000px;
+}
+
+.sobre{
+    position:relative;
+    width:220px;
+    height:150px;
+    margin:auto;
+    cursor:pointer;
+}
+
+/* base del sobre */
+
+.base{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#ff6b81;
+    border-radius:5px;
+}
+
+/* tapa del sobre */
+
+.tapa{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#ff4d6d;
+    clip-path: polygon(0 0, 50% 60%, 100% 0);
+    transform-origin:top;
+    transition:transform 1s;
+}
+
+/* animacion al abrir */
+
+.sobre.abierto .tapa{
+    transform:rotateX(180deg);
+}
+
+/* texto tocar */
+
+.tocar{
+    font-family:'Dancing Script',cursive;
+    font-size:45px;
+    margin-top:20px;
+}
+
+/* carta */
+
+.carta{
+    display:none;
+    max-width:750px;
+    margin:40px auto;
+    padding:35px;
+    background:#fff5f7;
+    border-radius:12px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    text-align:left;
+    line-height:1.7;
+    font-size:18px;
+}
+
+/* titulo carta */
+
+.titulo{
+    font-family:'Dancing Script',cursive;
+    font-size:40px;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+/* boton */
+
+.boton{
+    margin-top:30px;
+}
+
+button{
+    background:#792200;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#792200;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="gif">
+<img src="imgs/gif 5.gif">
+</div>
+
+<div class="contenedor-sobre">
+
+<div class="sobre" id="sobre" onclick="abrirSobre()">
+<div class="base"></div>
+<div class="tapa"></div>
+</div>
+
+</div>
+
+<div class="tocar">Toca el sobre</div>
+
+<div class="carta" id="carta">
+
+<div class="titulo">Razones por las que te amo:</div>
+
+Por tu hermosa sonrisa<br>
+Por tus lindos ojos<br>
+Porque eres muy inteligente<br>
+Por tu forma de ver la vida<br>
+Porque eres tierna en todo momento<br>
+Por tu noble corazón<br>
+Porque siempre me cuidas y te preocupas por mí<br>
+Porque contigo me siento en paz<br>
+Porque sabes escucharme cuando más lo necesito<br>
+Porque me haces sentir amado<br>
+Porque me haces querer ser una mejor persona<br>
+Porque tu amor por Dios es algo que admiro<br>
+Porque tu fe me hace acercarme más a Dios<br>
+Porque tu corazón es sincero<br>
+Porque me ayudas en momentos difíciles<br>
+Porque eres dulce con todos<br>
+Porque eres paciente conmigo<br>
+Porque me haces reír<br>
+Porque tu mirada me transmite amor<br>
+Porque eres única<br>
+Por tu increíble empeño y compromiso al hacer las cosas<br>
+Por ser una gran mujer<br>
+Por tu bondad<br>
+Porque tu forma de amar es muy tierna<br>
+Porque siempre buscas hacer lo correcto<br>
+Porque eres fuerte aunque a veces no lo notes<br>
+Porque me haces sentir que no estoy solo<br>
+Porque tu presencia me calma<br>
+Porque tu voz me da tranquilidad<br>
+Porque cada momento contigo vale la pena<br>
+Porque tu nobleza se refleja en tu forma de tratar a los demás<br>
+Porque eres sincera<br>
+Porque eres humilde<br>
+Por siempre recibirme con un abrazo<br>
+Porque tu fe es firme<br>
+Por todo lo lindo que me dices<br>
+Porque tu ternura se ve en cada detalle<br>
+Porque me motivas a mejorar<br>
+Porque tu amor es sincero<br>
+Porque me haces sentir importante<br>
+Porque le das importancia a mis gustos<br>
+Porque tu forma de amar es hermosa<br>
+Porque me apoyas cuando lo necesito<br>
+Por tu inteligencia la cual admiro mucho<br>
+Porque siempre intentas entenderme<br>
+Porque tu ternura me llena el corazón<br>
+Porque eres una persona con valores<br>
+Porque tu fe te hace una mujer especial<br>
+Porque tu sonrisa es mi lugar favorito<br>
+Porque haces que nuestras citas se vuelvan especiales<br>
+Porque eres fuerte en la fe<br>
+Porque me inspiras a ser mejor<br>
+Porque tu nobleza me recuerda que aún existe la bondad<br>
+Porque eres sensible y eso te hace hermosa por dentro<br>
+Porque tu amor es sincero<br>
+Porque eres una mujer admirable<br>
+Porque siempre intentas hacer lo correcto ante Dios<br>
+Porque tu corazón es puro<br>
+Porque tu ternura me hace sentir especial<br>
+Porque contigo todo tiene más sentido<br>
+Porque eres una bendición en mi vida<br>
+Porque me haces sentir afortunado<br>
+Porque tu fe en Dios te hace aún más hermosa<br>
+Porque eres diferente a cualquier otra persona<br>
+Porque cada día contigo es un regalo<br>
+Porque eres dulce incluso cuando estás seria<br>
+Porque me haces creer más en el amor<br>
+Por tu ternura que me hace sentir protegido emocionalmente<br>
+Porque tu amor me cambió la vida<br>
+Porque eres una bendición que Dios puso en mi camino<br>
+Porque eres y serás siempre el amor de mi vida ❤️
+
+</div>
+
+<div class="boton">
+<button onclick="location.href='pagina4.html'">
+Siguiente pagina
+</button>
+</div>
+
+<script>
+
+function abrirSobre(){
+
+let sobre = document.getElementById("sobre");
+let carta = document.getElementById("carta");
+
+sobre.classList.add("abierto");
+
+setTimeout(function(){
+carta.style.display="block";
+},800);
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>pagina5</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:#0a3d62;
+    font-family:'Montserrat', sans-serif;
+}
+
+/* canvas */
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+/* contenido */
+
+.contenido{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    color:white;
+    width:80%;
+    max-width:800px;
+}
+
+/* texto */
+
+.frase{
+    font-family:'Playfair Display', serif;
+    font-size:40px;
+    line-height:1.5;
+}
+
+/* boton */
+
+.boton{
+    margin-top:40px;
+}
+
+button{
+    background:#792200;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    font-size:18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#792200;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="mar"></canvas>
+
+<div class="contenido">
+
+<div class="frase">
+Quiero seguir nadando junto a ti mi pecesita, quiero nadar tomados de nuestra aleta hasta un futuro contigo
+</div>
+
+<div class="boton">
+<button onclick="location.href='pagina6.html'">
+Siguiente pagina
+</button>
+</div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("mar");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+/* burbujas */
+
+let burbujas = [];
+
+for(let i=0;i<40;i++){
+burbujas.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*4+2,
+speed:Math.random()*0.5
+});
+}
+
+/* peces */
+
+let peces = [
+{x:100,y:200,speed:1.2},
+{x:400,y:350,speed:1}
+];
+
+function dibujarPez(x,y){
+
+ctx.fillStyle="orange";
+
+ctx.beginPath();
+ctx.ellipse(x,y,25,12,0,0,Math.PI*2);
+ctx.fill();
+
+ctx.beginPath();
+ctx.moveTo(x-25,y);
+ctx.lineTo(x-40,y-10);
+ctx.lineTo(x-40,y+10);
+ctx.closePath();
+ctx.fill();
+
+}
+
+function animar(){
+
+ctx.fillStyle="#0a3d62";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+/* burbujas */
+
+ctx.fillStyle="rgba(255,255,255,0.5)";
+
+burbujas.forEach(b=>{
+
+ctx.beginPath();
+ctx.arc(b.x,b.y,b.size,0,Math.PI*2);
+ctx.fill();
+
+b.y -= b.speed;
+
+if(b.y < 0){
+b.y = canvas.height;
+b.x = Math.random()*canvas.width;
+}
+
+});
+
+/* peces */
+
+peces.forEach(p=>{
+
+dibujarPez(p.x,p.y);
+
+p.x += p.speed;
+
+if(p.x > canvas.width + 50){
+p.x = -50;
+p.y = Math.random()*canvas.height;
+}
+
+});
+
+requestAnimationFrame(animar);
+
+}
+
+animar();
+
+</script>
+
+</body>
+</html>
